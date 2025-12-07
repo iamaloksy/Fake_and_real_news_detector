@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TruthLens - AI Fake News Detector</title>
+    <meta name="description" content="Unveil the Truth. Beyond the Headlines. Advanced AI-powered fake news detection.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <button class="icon-btn" id="menuBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="nav-center">
+                <h1 class="logo">TruthLens</h1>
+            </div>
+            <div class="nav-right">
+                <button class="icon-btn" id="historyBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Screen -->
+        <section class="screen active" id="homeScreen">
+            <div class="hero-section">
+                <div class="circuit-bg" id="circuitBg"></div>
+                <div class="hero-content">
+                    <div class="logo-large">
+                        <span class="logo-text">Truth<span class="highlight">Lens</span></span>
+                    </div>
+                    <p class="tagline">Unveil the Truth.<br>Beyond the Headlines.</p>
+                    <button class="cta-btn" id="startBtn">
+                        <span>Start Analyzing</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analyze Screen -->
+        <section class="screen" id="analyzeScreen">
+            <div class="analyze-container">
+                <button class="back-btn" id="backBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </button>
+                
+                <h2 class="screen-title">Analyze Your News</h2>
+                
+                <div class="input-section">
+                    <label for="newsInput" class="input-label">Paste Article or URL</label>
+                    <textarea 
+                        id="newsInput" 
+                        class="news-input" 
+                        placeholder="Paste your news article text or enter URL here..."
+                        rows="8"
+                    ></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button class="analyze-btn gradient-btn" id="analyzeBtn">
+                        <span>Analyze</span>
+                    </button>
+                    <button class="clear-btn" id="clearBtn">Clear</button>
+                </div>
+
+                <div class="info-text">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    <span>TruthLens uses advanced AI for detection. Always cross-verify with trusted sources.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Processing Screen -->
+        <section class="screen" id="processingScreen">
+            <div class="processing-container">
+                <div class="neural-network" id="neuralNetwork"></div>
+                <h2 class="processing-title">Processing Article Data...</h2>
+                <p class="processing-subtitle">Our AI is busy detecting patterns<br>and verifying facts<span class="dots"></span></p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Result Screen -->
+        <section class="screen" id="resultScreen">
+            <div class="result-container">
+                <button class="back-btn" id="backToAnalyzeBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </button>
+
+                <div class="result-card" id="resultCard">
+                    <div class="result-icon" id="resultIcon">
+                        <!-- Icon will be injected by JS -->
+                    </div>
+                    <h2 class="result-title" id="resultTitle">REAL NEWS</h2>
+                    <p class="result-confidence">Confidence: <span id="confidenceValue">94%</span></p>
+                </div>
+
+                <div class="article-excerpt" id="articleExcerpt">
+                    <h3 class="excerpt-title">Original Article Excerpt</h3>
+                    <p class="excerpt-text" id="excerptText">
+                        Viverra quis dolor sit elit risus fissa g malesumo natoque sit finibus. 
+                        Nisl sit finibus. Laelt et Scurcous Lack of Insine
+                    </p>
+                    <span class="source-badge" id="sourceBadge">Source</span>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-btn primary-btn" id="readSourceBtn">
+                        <span>Read Full Article Source</span>
+                    </button>
+                    <button class="action-btn secondary-btn" id="analyzeAnotherBtn">
+                        <span>Analyze Another</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- History Screen -->
+        <section class="screen" id="historyScreen">
+            <div class="history-container">
+                <button class="back-btn" id="backFromHistoryBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </button>
+                <h2 class="screen-title">Analysis History</h2>
+                <div class="history-list" id="historyList">
+                    <!-- History items will be injected here -->
+                    <div class="empty-history">
+                        <p>No analysis history yet.</p>
+                    </div>
+                </div>
+                <button class="clear-history-btn" id="clearHistoryBtn">Clear History</button>
+            </div>
+        </section>
+
+        <!-- About Screen -->
+        <section class="screen" id="aboutScreen">
+            <div class="about-container">
+                <button class="back-btn" id="backFromAboutBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                </button>
+                <h2 class="screen-title">About TruthLens</h2>
+                <div class="about-content">
+                    <div class="about-card">
+                        <h3>Our Mission</h3>
+                        <p>TruthLens is dedicated to combating misinformation in the digital age. We use advanced artificial intelligence to analyze news content and help users distinguish between authentic reporting and fabricated stories.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>How It Works</h3>
+                        <p>Our system uses a Passive Aggressive Classifier trained on a massive dataset of real and fake news. It analyzes text patterns, linguistic features, and semantic structures to determine the likelihood of an article being authentic.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>Technology</h3>
+                        <p>Built with Python, scikit-learn, and NLTK for the backend, and a modern HTML5/CSS3 frontend. The AI model achieves high accuracy in detecting fake news patterns.</p>
+                    </div>
+                    <div class="about-footer">
+                        <p>Version 1.0.0</p>
+                        <p>Created with ❤️ for Truth</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <h3>Menu</h3>
+            <button class="close-btn" id="closeMenuBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <ul class="menu-list">
+            <li><a href="#" class="menu-item" id="menuHomeBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                </svg>
+                <span>Home</span>
+            </a></li>
+            <li><a href="#" class="menu-item" id="menuHistoryBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span>History</span>
+            </a></li>
+            <li><a href="#" class="menu-item" id="menuAboutBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span>About</span>
+            </a></li>
+        </ul>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
